@@ -54,6 +54,7 @@ public class Game : MonoBehaviour
         Pieces2 = Rows[1].transform.GetChild(1).GetChild(0).gameObject;
         Pieces3 = Rows[2].transform.GetChild(1).GetChild(0).gameObject;
         check(Pieces1, Pieces2, Pieces3);
+        
         Pieces1 = Rows[5].transform.GetChild(1).GetChild(0).gameObject;
         Pieces2 = Rows[6].transform.GetChild(1).GetChild(0).gameObject;
         Pieces3 = Rows[7].transform.GetChild(1).GetChild(0).gameObject;

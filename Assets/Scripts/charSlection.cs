@@ -14,6 +14,7 @@ public class charSlection : MonoBehaviour
     public GameObject GirlMugshotW;
     public GameObject Name;
     public GameObject NameW;
+    public static string character;
 
 
     // Start is called before the first frame update
@@ -28,7 +29,7 @@ public class charSlection : MonoBehaviour
         GirlMugshot.SetActive(false);
         BoyMugshotW.SetActive(true);
         GirlMugshotW.SetActive(false);
-
+        character = "Boy";
     }
     public void Pickgirl(){
         Name.GetComponent<Text>().text = "Aisha";
@@ -40,5 +41,6 @@ public class charSlection : MonoBehaviour
         girl.SetActive(true);
         boy.SetActive(false);
         SelectionScreen.SetActive(false);
+        character = "Girl";
     }
 }
