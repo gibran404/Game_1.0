@@ -9,11 +9,13 @@ public class camelPlayer : MonoBehaviour
     private SpriteRenderer sprite;
     private Animator anim;
     [SerializeField] private float moveSpeed = 2f;
-    [SerializeField] private float accelerationRate = 0.5f; // Increase this value for faster acceleration
-    [SerializeField] private float decelerationRate = 0.2f; // Increase this value for faster deceleration
 
-    private float moveSpeedMultiplier = 1f;
-    private bool isSpacePressed = false;
+    private float lastSpacePressTime;
+    [SerializeField] private float moveSpeedMultiplier = 2f;
+    [SerializeField] private float accelerationRate = 0.5f; // Increase this value for faster acceleration
+    [SerializeField] private float timeSinceLastPress;
+    [SerializeField] private float timeSinceNotPressed;
+
 
     void Start()
     {
@@ -21,24 +23,29 @@ public class camelPlayer : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        lastSpacePressTime = Time.time;
+        timeSinceLastPress = 100f;
     }
 
     void Update()
     {
+        timeSinceNotPressed = Time.time - lastSpacePressTime;
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            isSpacePressed = true;
-            moveSpeedMultiplier += accelerationRate;
+            timeSinceLastPress = Time.time - lastSpacePressTime;
+            if ((timeSinceLastPress < 0.5f) && (moveSpeedMultiplier < 5.8)) // Adjust this value for the time window to consider as fast presses
+            {
+                moveSpeedMultiplier += accelerationRate;
+            }
+            else
+            {
+                moveSpeedMultiplier = 2f;
+            }
+            lastSpacePressTime = Time.time;
         }
-
-        if (Input.GetKeyUp(KeyCode.Space))
+        else if ((timeSinceNotPressed > 0.5f) && (moveSpeedMultiplier > 2f))
         {
-            isSpacePressed = false;
-        }
-
-        if (!isSpacePressed)
-        {
-            moveSpeedMultiplier = Mathf.Max(1f, moveSpeedMultiplier - decelerationRate);
+            moveSpeedMultiplier -= 0.2f;
         }
 
         rb.velocity = new Vector2(moveSpeed * moveSpeedMultiplier, rb.velocity.y);
