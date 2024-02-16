@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Camel race.unity
     guid: c6123f74ab225504f97c44fe3a98164c
   - enabled: 1
+    path: Assets/Scenes/DeasertTown.unity
+    guid: b4fc56b954f5a4a44812a98a288cee1d
+  - enabled: 1
     path: Assets/Scenes/EndScreen.unity
     guid: 49b64597ead35584cae1b9895989ff33
   m_configObjects: {}
