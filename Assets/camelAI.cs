@@ -22,6 +22,11 @@ public class camelAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (raceStart.raceStarted == false)
+        {
+            return;
+        }
+        
         rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
     }
 }

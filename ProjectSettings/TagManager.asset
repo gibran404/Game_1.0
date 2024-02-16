@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PieceW
   - PieceB
+  - AI
   layers:
   - Default
   - TransparentFX

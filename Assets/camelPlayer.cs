@@ -29,6 +29,11 @@ public class camelPlayer : MonoBehaviour
 
     void Update()
     {
+        if (raceStart.raceStarted == false)
+        {
+            return;
+        }
+        
         timeSinceNotPressed = Time.time - lastSpacePressTime;
         if (Input.GetKeyDown(KeyCode.Space))
         {
